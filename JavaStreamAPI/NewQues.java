@@ -91,8 +91,10 @@ public class NewQues {
         // ---------------------------------------------------------------------------------------------------------------------------------
         // How do you get three maximum numbers and three minimum numbers from the given
         // list of integers?
-        List<Integer> listOfIntegers = Arrays.asList(45, 12, 56, 15, 24, 75, 31, 89);
-
+        List<Integer> listOfIntegers1 = Arrays.asList(45, 12, 56, 15, 24, 75, 31, 89);
+        listOfIntegers1.stream().sorted().limit(3).forEach(num-> System.out.println(num));
+        System.out.println();
+        listOfIntegers1.stream().sorted(Comparator.reverseOrder()).limit(3).forEach(num-> System.out.println(num));
 
     }
 }
