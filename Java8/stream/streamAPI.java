@@ -18,7 +18,7 @@ public class streamAPI {
                 .forEach((product) -> System.out.println(product.name));
 
         double totalPrice = productList.stream().map((product) -> product.price)
-                .reduce(0, (sum, price) -> sum + price);
+                .reduce((double) 0, (sum, price) -> sum + price);
         System.out.println(totalPrice);
     }
 }

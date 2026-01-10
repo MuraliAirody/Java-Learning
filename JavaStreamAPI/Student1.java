@@ -1,6 +1,6 @@
 package JavaStreamAPI;
 
-class Student{
+class Student1 {
 
     private int id;
     
@@ -20,11 +20,11 @@ class Student{
     
     private int rank;
   
-    public Student() {
+    public Student1() {
     }
 
-    public Student(int id, String firstName, String lastName, int age, String gender, String departmantName,
-      int joinedYear, String city, int rank) {
+    public Student1(int id, String firstName, String lastName, int age, String gender, String departmantName,
+                    int joinedYear, String city, int rank) {
      super();
      this.id = id;
      this.firstName = firstName;

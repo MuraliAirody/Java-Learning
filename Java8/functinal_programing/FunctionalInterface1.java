@@ -1,6 +1,6 @@
 package Java8.functinal_programing;
 
-public class FunctionalInterface {
+public class FunctionalInterface1 {
     public static void main(String[] args) {
         Thread th = null;
         try {

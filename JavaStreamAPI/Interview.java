@@ -9,30 +9,30 @@ import java.util.stream.Collectors;
 
 public class Interview {
     public static void main(String[] args) {
-        List<Student> list = Arrays.asList(
-                new Student(1, "Rohit", "Mall", 30, "Male", "Mechanical Engineering", 2015, "Mumbai", 122),
-                new Student(2, "Pulkit", "Singh", 56, "Male", "Computer Engineering", 2018, "Delhi", 67),
-                new Student(3, "Ankit", "Patil", 25, "Female", "Mechanical Engineering", 2019, "Kerala", 164),
-                new Student(4, "Satish Ray", "Malaghan", 30, "Male", "Mechanical Engineering", 2014, "Kerala", 26),
-                new Student(5, "Roshan", "Mukd", 23, "Male", "Biotech Engineering", 2022, "Mumbai", 12),
-                new Student(6, "Chetan", "Star", 24, "Male", "Mechanical Engineering", 2023, "Karnataka", 90),
-                new Student(7, "Arun", "Vittal", 26, "Male", "Electronics Engineering", 2014, "Karnataka", 324),
-                new Student(8, "Nam", "Dev", 31, "Male", "Computer Engineering", 2014, "Karnataka", 433),
-                new Student(9, "Sonu", "Shankar", 27, "Female", "Computer Engineering", 2018, "Karnataka", 7),
-                new Student(10, "Shubham", "Pandey", 26, "Male", "Instrumentation Engineering", 2017, "Mumbai", 98));
+        List<Student1> list = Arrays.asList(
+                new Student1(1, "Rohit", "Mall", 30, "Male", "Mechanical Engineering", 2015, "Mumbai", 122),
+                new Student1(2, "Pulkit", "Singh", 56, "Male", "Computer Engineering", 2018, "Delhi", 67),
+                new Student1(3, "Ankit", "Patil", 25, "Female", "Mechanical Engineering", 2019, "Kerala", 164),
+                new Student1(4, "Satish Ray", "Malaghan", 30, "Male", "Mechanical Engineering", 2014, "Kerala", 26),
+                new Student1(5, "Roshan", "Mukd", 23, "Male", "Biotech Engineering", 2022, "Mumbai", 12),
+                new Student1(6, "Chetan", "Star", 24, "Male", "Mechanical Engineering", 2023, "Karnataka", 90),
+                new Student1(7, "Arun", "Vittal", 26, "Male", "Electronics Engineering", 2014, "Karnataka", 324),
+                new Student1(8, "Nam", "Dev", 31, "Male", "Computer Engineering", 2014, "Karnataka", 433),
+                new Student1(9, "Sonu", "Shankar", 27, "Female", "Computer Engineering", 2018, "Karnataka", 7),
+                new Student1(10, "Shubham", "Pandey", 26, "Male", "Instrumentation Engineering", 2017, "Mumbai", 98));
 
         Solution.Ques(list);
     }
 }
 
 class Solution {
-    public static void Ques(List<Student> list) {
+    public static void Ques(List<Student1> list) {
 
         // 1- Find list of students whose first name starts with alphabet A
-        List<Student> students = list.stream().filter(std -> std.getFirstName().startsWith("A"))
+        List<Student1> students = list.stream().filter(std -> std.getFirstName().startsWith("A"))
                 .collect(Collectors.toList());
 
-        for (Student std : students) {
+        for (Student1 std : students) {
             System.out.println(std);
         }
         System.out.println();
@@ -56,7 +56,7 @@ class Solution {
 
         // 4- Find the max age of student
 
-        Student st = list.stream().max((student1, student2) -> student1.getAge() > student2.getAge() ? 1 : -1).get();
+        Student1 st = list.stream().max((student1, student2) -> student1.getAge() > student2.getAge() ? 1 : -1).get();
 
         System.out.println(st.getFirstName());
 
@@ -82,13 +82,13 @@ class Solution {
 
         // 7- Find the list of students whose age is less than 30
 
-        List<Student> li = list.stream().filter(student -> student.getAge() > 30).collect(Collectors.toList());
+        List<Student1> li = list.stream().filter(student -> student.getAge() > 30).collect(Collectors.toList());
         System.out.println(li);
 
         System.out.println();
 
         // 8- Find the list of students whose rank is in between 50 and 100
-        List<Student> liStudents = list.stream()
+        List<Student1> liStudents = list.stream()
                 .filter(student -> (student.getRank() >= 50 && student.getRank() <= 100))
                 .collect(Collectors.toList());
         System.out.println(liStudents);
@@ -138,7 +138,7 @@ class Solution {
         System.out.println();
         // 13- Find the highest rank in each department
 
-        Map<Object, Optional<Student>> highRank = list.stream().collect(
+        Map<Object, Optional<Student1>> highRank = list.stream().collect(
                 Collectors.groupingBy(std -> std.getDepartmantName(),
                         Collectors.maxBy((std1, std2) -> std1.getRank() > std2.getRank() ? 1 : -1)));
         System.out.println(highRank);
