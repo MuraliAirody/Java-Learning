@@ -9,6 +9,20 @@ public class LL {
 
     private int size;
 
+    private class Node{
+        int value;
+        Node next;
+
+        public Node(int value) {
+            this.value = value;
+        }
+
+        public Node(int value, Node next) {
+            this.value = value;
+            this.next = next;
+        }
+    }
+
     public void insertFirst(int val){
         Node node = new Node(val);
         node.next = head;
@@ -62,6 +76,29 @@ public class LL {
         return OptionalInt.of(val);
     }
 
+    public OptionalInt deleteLast(){
+        if(head==null){
+            return OptionalInt.empty();
+        }
+        if (size==1){
+            int val = tail.value;
+            deleteFirst();
+            return OptionalInt.of(val);
+        }
+        int val = tail.value;
+        tail = getNode(size-2);
+        tail.next = null;
+
+        return OptionalInt.of(val);
+    }
+
+    private Node getNode(int pos){
+        Node temp = head;
+        for(int i=0;i<pos;i++){
+            temp = temp.next;
+        }
+        return temp;
+    }
     public void display() {
         Node temp = head;
 
@@ -71,21 +108,6 @@ public class LL {
         }
         if(head!=null) {
             System.out.print("end\n");
-        }
-    }
-
-
-    private class Node{
-        int value;
-        Node next;
-
-        public Node(int value) {
-            this.value = value;
-        }
-
-        public Node(int value, Node next) {
-            this.value = value;
-            this.next = next;
         }
     }
 }

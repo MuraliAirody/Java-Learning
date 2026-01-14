@@ -22,5 +22,7 @@ public class Main {
 
         list.display();
 
+        System.out.println(list.deleteLast());
+
     }
 }
