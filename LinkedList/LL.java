@@ -1,5 +1,7 @@
 package LinkedList;
 
+import java.util.OptionalInt;
+
 public class LL {
 
     private Node head;
@@ -47,6 +49,19 @@ public class LL {
         temp.next = new Node(val,temp.next);
     }
 
+    public OptionalInt deleteFirst(){
+        if(head==null){
+            return OptionalInt.empty();
+        }
+        int val = head.value;
+        head = head.next;
+
+        if(head==null){
+            tail=null;
+        }
+        return OptionalInt.of(val);
+    }
+
     public void display() {
         Node temp = head;
 
@@ -54,7 +69,9 @@ public class LL {
             System.out.print(temp.value + "->");
             temp = temp.next;
         }
-        System.out.print("end");
+        if(head!=null) {
+            System.out.print("end\n");
+        }
     }
 
 

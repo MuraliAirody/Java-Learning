@@ -18,5 +18,9 @@ public class Main {
 
         list.display();
 
+        System.out.println(list.deleteFirst().isEmpty()?"Linked list is empty":list.deleteFirst().getAsInt());
+
+        list.display();
+
     }
 }
