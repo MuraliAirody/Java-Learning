@@ -1,5 +1,7 @@
 package LinkedList;
 
+import java.util.OptionalInt;
+
 public class Main {
     public static void main(String[] args) {
 
@@ -18,11 +20,20 @@ public class Main {
 
         list.display();
 
-        System.out.println(list.deleteFirst().isEmpty()?"Linked list is empty":list.deleteFirst().getAsInt());
+        java.util.OptionalInt delFirst = list.deleteFirst();
+
+        System.out.println(delFirst.isEmpty()?"Linked list is empty":delFirst.getAsInt());
 
         list.display();
 
-        System.out.println(list.deleteLast());
+        java.util.OptionalInt delLast = list.deleteLast();
+        System.out.println(delLast.isEmpty()?"Linked list is empty":delLast.getAsInt());
 
+        list.display();
+
+        OptionalInt delPos = list.deletePos(3);
+        System.out.println(delPos.isEmpty()?"Linked list is empty":delPos.getAsInt());
+
+        list.display();
     }
 }

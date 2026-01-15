@@ -61,6 +61,7 @@ public class LL {
             temp = temp.next;
         }
         temp.next = new Node(val,temp.next);
+        size++;
     }
 
     public OptionalInt deleteFirst(){
@@ -73,6 +74,7 @@ public class LL {
         if(head==null){
             tail=null;
         }
+        size--;
         return OptionalInt.of(val);
     }
 
@@ -86,15 +88,41 @@ public class LL {
             return OptionalInt.of(val);
         }
         int val = tail.value;
-        tail = getNode(size-2);
+        tail = getNode(size-1);
         tail.next = null;
+
+        size--;
+
+        return OptionalInt.of(val);
+    }
+
+    public OptionalInt deletePos(int pos){
+
+        if (pos < 1 || pos > size) {
+            throw new IndexOutOfBoundsException(
+                    "Position: " + pos + ", Size: " + size
+            );
+        }
+
+        if(pos==1){
+            return deleteFirst();
+        }
+
+        if(pos==size){
+            return deleteLast();
+        }
+
+        Node temp = getNode(pos-1);
+        int val = temp.next.value;
+        temp.next = temp.next.next;
+        size--;
 
         return OptionalInt.of(val);
     }
 
     private Node getNode(int pos){
         Node temp = head;
-        for(int i=0;i<pos;i++){
+        for(int i=1;i<pos && temp!=null;i++){
             temp = temp.next;
         }
         return temp;
