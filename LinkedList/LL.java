@@ -120,6 +120,18 @@ public class LL {
         return OptionalInt.of(val);
     }
 
+    public Node findNode(int val){
+        Node node = head;
+
+        while (node!=null){
+            if(node.value==val){
+                return node;
+            }
+            node=node.next;
+        }
+        return null;
+    }
+
     private Node getNode(int pos){
         Node temp = head;
         for(int i=1;i<pos && temp!=null;i++){

@@ -35,5 +35,7 @@ public class Main {
         System.out.println(delPos.isEmpty()?"Linked list is empty":delPos.getAsInt());
 
         list.display();
+
+        System.out.println(list.findNode(8));
     }
 }
