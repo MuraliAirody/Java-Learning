@@ -9,5 +9,7 @@ public class Main {
         list.insertFirst(10);
 
         list.display();
+
+        list.revDisplay();
     }
 }

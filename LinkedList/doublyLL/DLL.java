@@ -2,6 +2,7 @@ package LinkedList.doublyLL;
 
 public class DLL {
     private Node head;
+    private Node tail;
 
     public void insertFirst(int val){
         Node node = new Node(val);
@@ -10,6 +11,9 @@ public class DLL {
 
         if(head!=null){
             head.prev = node;
+        }
+        if(tail==null){
+            tail = head;
         }
         head = node;
     }
@@ -20,6 +24,17 @@ public class DLL {
         while (temp!=null){
             System.out.print(temp.val+"->");
             temp = temp.next;
+        }
+        System.out.println();
+    }
+
+
+    public void revDisplay(){
+        Node temp = tail;
+
+        while (temp!=null){
+            System.out.print(temp.val+"->");
+            temp = temp.prev;
         }
         System.out.println();
     }
