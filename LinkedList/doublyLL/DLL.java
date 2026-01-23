@@ -11,11 +11,22 @@ public class DLL {
 
         if(head!=null){
             head.prev = node;
-        }
-        if(tail==null){
-            tail = head;
+        }else{
+            tail = node;
         }
         head = node;
+    }
+
+    public void insertLast(int val){
+        Node node = new Node(val);
+       if (tail==null){
+           insertFirst(val);
+           return;
+       }
+       tail.next = node;
+       node.prev = tail;
+       node.next = null;
+       tail = node;
     }
 
     public void display(){

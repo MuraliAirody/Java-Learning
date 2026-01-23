@@ -11,5 +11,9 @@ public class Main {
         list.display();
 
         list.revDisplay();
+
+        list.insertLast(80);
+
+        list.display();
     }
 }
