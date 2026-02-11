@@ -42,11 +42,11 @@ public class JavaStream {
         System.out.println();
 
         //TODO:
-        int[] a = new int[] {4, 2, 7, 1};
+        int[] a = new int[]{4, 2, 7, 1};
 
-        int[] b = new int[] {8, 3, 9, 5};
+        int[] b = new int[]{8, 3, 9, 5};
 
-        IntStream.concat(Arrays.stream(a),Arrays.stream(b)).sorted().forEach(ele-> System.out.print(ele+" "));
+        IntStream.concat(Arrays.stream(a), Arrays.stream(b)).sorted().forEach(ele -> System.out.print(ele + " "));
         System.out.println();
 
         //TODO:
@@ -56,20 +56,30 @@ public class JavaStream {
         s1 = Arrays.stream(s1.split("")).sorted(Comparator.naturalOrder()).collect(Collectors.joining());
         s2 = Arrays.stream(s2.split("")).sorted(Comparator.naturalOrder()).collect(Collectors.joining());
 
-        if(s1.equals(s2)){
+        if (s1.equals(s2)) {
             System.out.println("Anagram");
-        }else{
+        } else {
             System.out.println("Not an anagram");
         }
 
         //TODO:
 
         int i = 15623;
-       int res = Arrays.stream(String.valueOf(i).split("")).mapToInt(Integer::parseInt).reduce((a1, b1)->a1+b1).getAsInt();
+        int res = Arrays.stream(String.valueOf(i).split("")).mapToInt(Integer::parseInt).reduce((a1, b1) -> a1 + b1).getAsInt();
         System.out.println(res);
 
         //TODO: Palindrome
         String str = "ROTATOR";
-        IntStream.rangeClosed()
+        boolean ans = IntStream.rangeClosed(0, str.length() / 2).allMatch(ind -> str.charAt(ind) == str.charAt(str.length() - ind - 1));
+        if(ans){
+            System.out.println(str+" :is palindrome");
+        }else{
+            System.out.println(str+" :is not palindrome");
+        }
+
+        List<String> listOfStrings = Arrays.asList("One", "2wo", "3hree", "Four", "5ive", "Six");
+
+        listOfStrings.stream().filter(st -> Character.isDigit(st.charAt(0))).forEach(st -> System.out.print(st+" "));
+
     }
 }
