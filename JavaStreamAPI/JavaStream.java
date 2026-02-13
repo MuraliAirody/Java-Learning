@@ -1,13 +1,9 @@
 package JavaStreamAPI;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class JavaStream {
 
@@ -71,15 +67,38 @@ public class JavaStream {
         //TODO: Palindrome
         String str = "ROTATOR";
         boolean ans = IntStream.rangeClosed(0, str.length() / 2).allMatch(ind -> str.charAt(ind) == str.charAt(str.length() - ind - 1));
-        if(ans){
-            System.out.println(str+" :is palindrome");
-        }else{
-            System.out.println(str+" :is not palindrome");
+        if (ans) {
+            System.out.println(str + " :is palindrome");
+        } else {
+            System.out.println(str + " :is not palindrome");
         }
 
         List<String> listOfStrings = Arrays.asList("One", "2wo", "3hree", "Four", "5ive", "Six");
 
-        listOfStrings.stream().filter(st -> Character.isDigit(st.charAt(0))).forEach(st -> System.out.print(st+" "));
+        listOfStrings.stream().filter(st -> Character.isDigit(st.charAt(0))).forEach(st -> System.out.print(st + " "));
+
+        System.out.println();
+
+        List<Integer> listOfInteger = Arrays.asList(111, 222, 333, 111, 555, 333, 777, 222);
+        HashSet<Integer> set = new HashSet<>();
+
+        Set<Integer> duplicateIntegerResult = listOfInteger.stream().filter(ele -> !set.add(ele)).collect(Collectors.toSet());
+
+        System.out.println(duplicateIntegerResult.toString());
+
+        //TODO: Print Duplicate Elements
+        inputString = inputString.replaceAll("\\s+", "").toLowerCase();
+
+        HashSet<String> charSet = new HashSet<>();
+        Set<String> duplicateSetResult = Arrays.stream(inputString.split("")).filter(c -> !charSet.add(c)).collect(Collectors.toSet());
+        System.out.println(duplicateSetResult.toString());
+
+        //TODO:
+        LinkedHashMap<Character, Long> firstDuplicateElement = inputString.chars().mapToObj(c -> (char)c)
+                .collect(Collectors.groupingBy(Function.identity(),LinkedHashMap::new,Collectors.counting()));
+        java.util.Map.Entry<Character,Long> entryRes = firstDuplicateElement.entrySet().stream()
+                .filter(ent -> ent.getValue()>1).findFirst().orElse(null);
+        System.out.println(entryRes != null ?entryRes.getKey()+" : "+entryRes.getValue():"No Result");
 
     }
 }
