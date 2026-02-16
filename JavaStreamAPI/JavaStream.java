@@ -93,12 +93,20 @@ public class JavaStream {
         Set<String> duplicateSetResult = Arrays.stream(inputString.split("")).filter(c -> !charSet.add(c)).collect(Collectors.toSet());
         System.out.println(duplicateSetResult.toString());
 
-        //TODO:
+        //TODO:Find first repeated character in a string?
         LinkedHashMap<Character, Long> firstDuplicateElement = inputString.chars().mapToObj(c -> (char)c)
                 .collect(Collectors.groupingBy(Function.identity(),LinkedHashMap::new,Collectors.counting()));
         java.util.Map.Entry<Character,Long> entryRes = firstDuplicateElement.entrySet().stream()
                 .filter(ent -> ent.getValue()>1).findFirst().orElse(null);
         System.out.println(entryRes != null ?entryRes.getKey()+" : "+entryRes.getValue():"No Result");
+
+        //TODO: Find first non-repeated character in a string?
+        LinkedHashMap<Character, Long> firstUnique = inputString.chars().mapToObj(c -> (char)c)
+                .collect(Collectors.groupingBy(Function.identity(),LinkedHashMap::new,Collectors.counting()));
+        Map.Entry<Character, Long> uniqueEntry = firstUnique.entrySet().stream().filter(ent-> ent.getValue()==1).findFirst().orElse(null);
+
+        System.out.println(uniqueEntry != null ?uniqueEntry.getKey()+" : "+uniqueEntry.getValue():"No Result");
+
 
     }
 }
