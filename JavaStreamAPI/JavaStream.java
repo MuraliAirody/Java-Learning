@@ -4,6 +4,7 @@ import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class JavaStream {
 
@@ -108,5 +109,13 @@ public class JavaStream {
         System.out.println(uniqueEntry != null ?uniqueEntry.getKey()+" : "+uniqueEntry.getValue():"No Result");
 
 
+        //TODO: Fibonacci series
+
+        int[] fib = new int[10];
+        fib[0] = 0;
+        fib[1] = 1;
+
+        IntStream.range(2,10).forEach(index -> fib[index] = fib[index-1] + fib[index-2]);
+        IntStream.of(fib).forEach(index -> System.out.print(index + " "));
     }
 }
