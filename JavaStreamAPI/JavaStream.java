@@ -117,5 +117,9 @@ public class JavaStream {
 
         IntStream.range(2,10).forEach(index -> fib[index] = fib[index-1] + fib[index-2]);
         IntStream.of(fib).forEach(index -> System.out.print(index + " "));
+
+        System.out.println();
+        //TODO: first 10 odd number
+        Stream.iterate(new int[]{1,3},f -> new int[]{f[1],f[1]+2}).limit(10).map(f -> f[0]).forEach(index -> System.out.print(index + " "));
     }
 }
