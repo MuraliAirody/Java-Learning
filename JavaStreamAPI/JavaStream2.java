@@ -1,9 +1,6 @@
 package JavaStreamAPI;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class JavaStream2 {
@@ -28,9 +25,38 @@ public class JavaStream2 {
 
         //TODO:Get the details of highest paid employee in the organization?
         Employee highestSalariedEmp = employeeList.stream().sorted(Comparator.comparingDouble(
-                emp -> ((Employee)emp).getSalary()).reversed()).findFirst().get(); //can use max as well
+                emp -> ((Employee) emp).getSalary()).reversed()).findFirst().get(); //can use max as well
 
         System.out.println(highestSalariedEmp);
+
+
+        //TODO:Get the names of all employees who have joined after 2015?
+        employeeList.stream().filter(emp -> emp.getYearOfJoining() > 2015).forEach(emp -> System.out.println(emp.getName()));
+        System.out.println();
+
+        //TODO: Count the number of employees in each department?
+        Map<String, Long> noOfEmpPerDep = employeeList.stream().collect(Collectors.groupingBy(emp -> emp.getDepartment(), Collectors.counting()));
+        System.out.println(noOfEmpPerDep.entrySet());
+
+        //TODO: What is the average salary of each department?
+        Map<String, Double> avgSalaryOfDep = employeeList.stream().collect(Collectors.groupingBy(emp -> emp.getDepartment(), Collectors.averagingDouble(emp -> emp.getSalary())));
+        System.out.println(avgSalaryOfDep.entrySet());
+
+        //TODO: Get the details of youngest male employee in the product development department?
+        Optional<Employee> smallAge = employeeList.stream().filter(
+                        emp -> (emp.getGender().equals("Male") && emp.getDepartment().equals("Product Development")))
+                .min(Comparator.comparingInt(Employee::getAge));
+        System.out.println(smallAge.isPresent()?smallAge.get():"No employees found");
+
+//        Employee youngestMaleEmployeeInProductDevelopmentWrapper=
+//                employeeList.stream()
+//                        .filter(e -> Objects.equals(e.getGender(), "Male") && Objects.equals(e.getDepartment(), "Product Development"))
+//                        .min(Comparator.comparingInt(Employee::getAge)).get();
+//
+//        Employee youngestMaleEmployeeInProductDevelopment = youngestMaleEmployeeInProductDevelopmentWrapper;
+//        System.out.println(youngestMaleEmployeeInProductDevelopment);
+
+
     }
 
     private static List<Employee> addEmployees() {
