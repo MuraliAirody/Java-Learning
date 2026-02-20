@@ -56,7 +56,10 @@ public class JavaStream2 {
 //        Employee youngestMaleEmployeeInProductDevelopment = youngestMaleEmployeeInProductDevelopmentWrapper;
 //        System.out.println(youngestMaleEmployeeInProductDevelopment);
 
+        //TODO: Who has the most working experience in the organization?
 
+       java.util.Optional<Employee> experiencedEmplyee = employeeList.stream().min(Comparator.comparingInt(Employee::getYearOfJoining));
+       System.out.println(experiencedEmplyee.isPresent()?experiencedEmplyee.get():"No employees found");
     }
 
     private static List<Employee> addEmployees() {
