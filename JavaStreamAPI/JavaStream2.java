@@ -85,6 +85,32 @@ public class JavaStream2 {
         //TODO: What is the average salary and total salary of the whole organization?
         int totalSalary = employeeList.stream().mapToInt(emp -> (int) emp.getSalary()).sum();
         System.out.println(totalSalary);
+
+        double totalAverage = employeeList.stream().mapToDouble(emp -> emp.getSalary()).average().getAsDouble();
+        System.out.println(totalAverage);
+
+        DoubleSummaryStatistics doubleSummaryStatistics  = employeeList.stream()
+                .collect(Collectors.summarizingDouble(Employee::getSalary));
+        System.out.println(doubleSummaryStatistics.getAverage());
+        System.out.println(doubleSummaryStatistics.getSum());
+
+        System.out.println();
+
+        //TODO: Separate the employees who are younger or equal to 25 years from those employees who are older than 25 years.
+        Map<Boolean, List<Employee>> partRes= employeeList.stream().collect(Collectors.partitioningBy(emp -> emp.getAge()<=25));
+        for(Map.Entry<Boolean, List<Employee>> emps: partRes.entrySet()){
+            if(emps.getKey()){
+                System.out.println("Younger Employees");
+                System.out.println("------------------");
+                emps.getValue().stream().forEach(emp -> System.out.println(emp.getName()));
+                System.out.println("------------------");
+            } else{
+                System.out.println("Old Employees");
+                System.out.println("------------------");
+                emps.getValue().stream().forEach(emp -> System.out.println(emp.getName()));
+                System.out.println("------------------");
+            }
+        }
     }
 
     private static List<Employee> addEmployees() {
