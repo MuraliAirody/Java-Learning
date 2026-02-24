@@ -60,6 +60,31 @@ public class JavaStream2 {
 
        java.util.Optional<Employee> experiencedEmplyee = employeeList.stream().min(Comparator.comparingInt(Employee::getYearOfJoining));
        System.out.println(experiencedEmplyee.isPresent()?experiencedEmplyee.get():"No employees found");
+
+        //TODO: How many male and female employees are there in the sales and marketing team?
+        Map<String, Long> departWiseDender = employeeList.stream().filter(emp ->
+                        emp.getDepartment().equals("Sales And Marketing"))
+                .collect(Collectors.groupingBy(emp -> emp.getGender(), Collectors.counting()));
+        System.out.println(departWiseDender.entrySet());
+
+        //TODO: What is the average salary of male and female employees?
+       Map<String,Double> avgSalary = employeeList.stream().collect(Collectors.groupingBy(emp -> emp.getGender(),
+                Collectors.averagingDouble(emp -> emp.getSalary())));
+        System.out.println(avgSalary.entrySet());
+
+        //TODO:  List down the names of all employees in each department?
+        Map<String, List<Employee>> depWiseEmployee = employeeList.stream().collect(Collectors.groupingBy(emp -> emp.getDepartment()));
+
+        for(Map.Entry<String, List<Employee>> emps: depWiseEmployee.entrySet()){
+            System.out.println("====================");
+            System.out.println(emps.getKey());
+            System.out.println("....................");
+            emps.getValue().stream().forEach(emp -> System.out.println(emp.getName()));
+        }
+
+        //TODO: What is the average salary and total salary of the whole organization?
+        int totalSalary = employeeList.stream().mapToInt(emp -> (int) emp.getSalary()).sum();
+        System.out.println(totalSalary);
     }
 
     private static List<Employee> addEmployees() {
