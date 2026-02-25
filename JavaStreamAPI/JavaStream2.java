@@ -111,6 +111,12 @@ public class JavaStream2 {
                 System.out.println("------------------");
             }
         }
+
+        //TODO: Who is the oldest employee in the organization? What is his age and which department he belongs to?
+//        Optional<Employee> agedEmployeeOp = employeeList.stream().sorted(Comparator.comparingInt(emp -> ((Employee)emp).getAge()).reversed()).findFirst();
+        Optional<Employee> agedEmployeeOp = employeeList.stream().max(Comparator.comparingInt(Employee::getAge));
+        System.out.println(agedEmployeeOp.isPresent()?agedEmployeeOp.get().getAge()+" "+agedEmployeeOp.get().getDepartment():"No employees found");
+
     }
 
     private static List<Employee> addEmployees() {
