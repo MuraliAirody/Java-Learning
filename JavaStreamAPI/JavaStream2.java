@@ -117,7 +117,30 @@ public class JavaStream2 {
         Optional<Employee> agedEmployeeOp = employeeList.stream().max(Comparator.comparingInt(Employee::getAge));
         System.out.println(agedEmployeeOp.isPresent()?agedEmployeeOp.get().getAge()+" "+agedEmployeeOp.get().getDepartment():"No employees found");
 
+        //TODO: Sorting HashMap according to natural order of keys using TreeMap without Comparator :
+        Map<String, Integer> studentMap = new HashMap<String, Integer>();
+
+        studentMap.put("Jyous", 87);
+        studentMap.put("Klusener", 82);
+        studentMap.put("Xiangh", 91);
+        studentMap.put("Lisa", 89);
+        studentMap.put("Narayan", 95);
+        studentMap.put("Arunkumar", 86);
+
+        Map<String, Integer> sortedStudentMap = new TreeMap<>(studentMap);
+
+        System.out.println("Before Sorting : ");
+
+        System.out.println(studentMap);
+
+        System.out.println("After Sorting : ");
+
+        System.out.println(sortedStudentMap);
+
     }
+
+    //TODO: Sorting HashMap according to natural order of keys using TreeMap without Comparator :
+
 
     private static List<Employee> addEmployees() {
         List<Employee> employeeList = new ArrayList<Employee>();
