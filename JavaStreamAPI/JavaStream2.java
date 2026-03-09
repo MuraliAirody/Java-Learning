@@ -139,8 +139,6 @@ public class JavaStream2 {
 
     }
 
-    //TODO: Sorting HashMap according to natural order of keys using TreeMap without Comparator :
-
 
     private static List<Employee> addEmployees() {
         List<Employee> employeeList = new ArrayList<Employee>();
